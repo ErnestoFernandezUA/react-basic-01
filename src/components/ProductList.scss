@@ -1,0 +1,12 @@
+.ProductList {
+  list-style-type: none;
+  padding: 0;
+
+  &__item {
+
+    &--active {
+      background-color: yellow;
+      // display: none;
+    }
+  }
+}
