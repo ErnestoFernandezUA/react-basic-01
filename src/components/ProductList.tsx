@@ -93,7 +93,7 @@ export class ProductList extends React.Component<Props, State> {
           // eslint-disable-next-line no-console
           console.log('take & move DOWN');
 
-          if (activeId < products.length) {
+          if (activeId < products.length - 1) {
             // eslint-disable-next-line no-console
             console.log(products[activeId - 1]);
 
@@ -106,10 +106,10 @@ export class ProductList extends React.Component<Props, State> {
             const newProducts = [];
             const newActiveId = activeId + 1;
 
-            newProducts.push(...products.slice(0, activeId - 1));
+            newProducts.push(...products.slice(0, activeId));
+            newProducts.push(products[activeId + 1]);
             newProducts.push(products[activeId]);
-            newProducts.push(products[activeId - 1]);
-            newProducts.push(...products.slice(activeId + 1));
+            newProducts.push(...products.slice(activeId + 2));
 
             this.setState({
               products: newProducts,
@@ -121,21 +121,12 @@ export class ProductList extends React.Component<Props, State> {
           console.log('move DOWN', this.state.activeId);
 
           this.setState(prevState => ({
-            activeId: prevState.activeId < products.length
+            activeId: prevState.activeId < products.length - 1
               ? prevState.activeId + 1
-              : products.length,
+              : products.length - 1,
           }));
         }
 
-        // this.setState(prevState => ({
-        //   activeId:
-        //     prevState.activeId < this.props.products.length
-        //       ? prevState.activeId + 1
-        //       : this.props.products.length,
-        // }));
-
-        // // eslint-disable-next-line no-console
-        // console.log('move down', this.state.activeId);
         break;
 
       case 't':
