@@ -15,11 +15,11 @@ type Props = {
 
 export class ProductItem extends React.Component<Props> {
   buttonColorStyle = (
-    id: number,
+    productsKey: number,
     activeId: number,
     isTakenPosition: boolean,
   ) => {
-    if (id === activeId) {
+    if (productsKey === activeId) {
       return isTakenPosition ? 'yellow' : 'grey';
     }
 
@@ -47,13 +47,13 @@ export class ProductItem extends React.Component<Props> {
         <button
           type="button"
           onKeyPress={keyPressHandler}
-          onClick={event => clickActiveHandler(event, id)}
-          onContextMenu={event => clickTakeHandler(event, id)}
+          onClick={event => clickActiveHandler(event, productsKey)}
+          onContextMenu={event => clickTakeHandler(event, productsKey)}
           style={
             {
               border: `2px solid ${color}`,
               borderRadius: '10px',
-              backgroundColor: this.buttonColorStyle(id, activeId, isTakenPosition),
+              backgroundColor: this.buttonColorStyle(productsKey, activeId, isTakenPosition),
               width: '200px',
               margin: '2px',
             }

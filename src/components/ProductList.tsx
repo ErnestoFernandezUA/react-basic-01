@@ -18,7 +18,7 @@ type State = {
 export class ProductList extends React.Component<Props, State> {
   state = {
     products: this.props.products,
-    activeId: 1,
+    activeId: 0,
     isTakenPosition: false,
   };
 
@@ -53,28 +53,28 @@ export class ProductList extends React.Component<Props, State> {
           // eslint-disable-next-line no-console
           console.log('take & move UP');
 
-          if (activeId > 1) {
-            // eslint-disable-next-line no-console
-            console.log(products[activeId - 2]);
-
+          if (activeId > 0) {
             // eslint-disable-next-line no-console
             console.log(products[activeId - 1]);
+
+            // eslint-disable-next-line no-console
+            console.log(products[activeId]);
 
             // eslint-disable-next-line no-console
             console.log(products);
 
             const newProducts: Product[] = [];
-            const newActiveId = activeId - 1;
+            const newActiveId = activeId;
 
-            newProducts.push(...products.slice(0, activeId - 2));
+            newProducts.push(...products.slice(0, activeId - 1));
+            newProducts.push(products[activeId]);
             newProducts.push(products[activeId - 1]);
-            newProducts.push(products[activeId - 2]);
-            newProducts.push(...products.slice(activeId));
+            newProducts.push(...products.slice(activeId + 1));
 
             this.setState((prevState) => ({
               ...prevState,
               products: newProducts,
-              activeId: newActiveId,
+              activeId: newActiveId - 1,
             }));
           }
         } else {
@@ -82,7 +82,7 @@ export class ProductList extends React.Component<Props, State> {
           console.log('move UP', this.state.activeId);
 
           this.setState(prevState => ({
-            activeId: prevState.activeId > 2 ? prevState.activeId - 1 : 1,
+            activeId: prevState.activeId > 1 ? prevState.activeId - 1 : 0,
           }));
         }
 
@@ -156,10 +156,20 @@ export class ProductList extends React.Component<Props, State> {
     // eslint-disable-next-line no-console
     console.log('sort by Id');
 
+    const currentActiveProductId = this.state.products[this.state.activeId].id;
+
+    // eslint-disable-next-line no-console
+    console.log('currentActiveProductId = ', currentActiveProductId);
+
     const sortedProducts = [...this.state.products].sort((a, b) => a.id - b.id);
+    const newActiveId = sortedProducts.findIndex(item => item.id === currentActiveProductId);
+
+    // eslint-disable-next-line no-console
+    console.log('newActiveId = ', newActiveId);
 
     this.setState(() => ({
       products: sortedProducts,
+      activeId: newActiveId,
     }));
   };
 
@@ -167,10 +177,21 @@ export class ProductList extends React.Component<Props, State> {
     // eslint-disable-next-line no-console
     console.log('sort by color');
 
+    const currentActiveProductId = this.state.products[this.state.activeId].id;
+
+    // eslint-disable-next-line no-console
+    console.log('currentActiveProductId = ', currentActiveProductId);
+
     const sortedProducts = [...this.state.products].sort((a, b) => a.color.localeCompare(b.color));
+
+    const newActiveId = sortedProducts.findIndex(item => item.id === currentActiveProductId);
+
+    // eslint-disable-next-line no-console
+    console.log('newActiveId = ', newActiveId);
 
     this.setState(() => ({
       products: sortedProducts,
+      activeId: newActiveId,
     }));
   };
 
@@ -178,29 +199,42 @@ export class ProductList extends React.Component<Props, State> {
     // eslint-disable-next-line no-console
     console.log('sort by name');
 
-    this.setState((prevState) => ({
-      products: [...prevState.products].sort((a, b) => a.name.localeCompare(b.name)),
+    const currentActiveProductId = this.state.products[this.state.activeId].id;
+
+    // eslint-disable-next-line no-console
+    console.log('currentActiveProductId = ', currentActiveProductId);
+
+    const sortedProducts = [...this.state.products].sort((a, b) => a.name.localeCompare(b.name));
+
+    const newActiveId = sortedProducts.findIndex(item => item.id === currentActiveProductId);
+
+    // eslint-disable-next-line no-console
+    console.log('newActiveId = ', newActiveId);
+
+    this.setState(() => ({
+      products: sortedProducts,
+      activeId: newActiveId,
     }));
   };
 
-  clickActiveHandler = (event: any, id: number) => {
+  clickActiveHandler = (event: any, productsKey: number) => {
     this.setState(() => ({
-      activeId: id,
+      activeId: productsKey,
       isTakenPosition: false,
     }));
   };
 
-  clickTakeHandler = (event: any, id: number) => {
+  clickTakeHandler = (event: any, productsKey: number) => {
     event.preventDefault();
 
-    if (this.state.activeId === id) {
+    if (this.state.activeId === productsKey) {
       this.setState((prevState) => ({
         ...prevState,
         isTakenPosition: !prevState.isTakenPosition,
       }));
     } else {
       this.setState(() => ({
-        activeId: id,
+        activeId: productsKey,
         isTakenPosition: true,
       }));
     }
@@ -220,15 +254,15 @@ export class ProductList extends React.Component<Props, State> {
       <>
         <p>
           name: &nbsp;
-          {products[activeId - 1].name}
+          {products[activeId].name}
         </p>
         <p>
-          current position:&nbsp;
+          activeId:&nbsp;
           {activeId}
         </p>
         <p>
-          is taken? &nbsp;
-          {isTakenPosition ? 'taken' : 'no taken'}
+          isTakenPosition &nbsp;
+          {isTakenPosition ? 'true' : 'false'}
         </p>
 
         <button
@@ -276,31 +310,34 @@ export class ProductList extends React.Component<Props, State> {
           sort by name
         </button>
 
-        <ul className="ProductList">
-          {products.map((product, i) => {
-            return (
-              <li
-                key={product.id}
-              >
-                <ProductItem
-                  productsKey={i}
-                  id={product.id}
-                  name={product.name}
-                  color={product.color}
-                  activeId={activeId}
-                  isTakenPosition={isTakenPosition}
-                  keyPressHandler={this.keyPressHandler}
-                  clickActiveHandler={this.clickActiveHandler}
-                  clickTakeHandler={this.clickTakeHandler}
-                />
-              </li>
-            );
-          })}
-        </ul>
-
-        <Memocomponent
-          products={this.state.products}
-        />
+        <div className="productFlexBox">
+          <ul className="productFlexBox__ProductList ProductList">
+            {products.map((product, i) => {
+              return (
+                <li
+                  key={product.id}
+                >
+                  <ProductItem
+                    productsKey={i}
+                    id={product.id}
+                    name={product.name}
+                    color={product.color}
+                    activeId={activeId}
+                    isTakenPosition={isTakenPosition}
+                    keyPressHandler={this.keyPressHandler}
+                    clickActiveHandler={this.clickActiveHandler}
+                    clickTakeHandler={this.clickTakeHandler}
+                  />
+                </li>
+              );
+            })}
+          </ul>
+          <div className="productFlexBox__MemoComponent">
+            <Memocomponent
+              products={this.state.products}
+            />
+          </div>
+        </div>
       </>
     );
   }

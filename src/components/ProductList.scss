@@ -10,3 +10,23 @@
     }
   }
 }
+
+.productFlexBox {
+  // border: 1px solid green;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: start;
+  
+
+  &__ProductList {
+    display: inline-block;
+    // border: 1px solid red;
+  }
+
+  &__MemoComponent {
+    // border: 1px solid red;
+    display: inline-block;
+  }
+
+}
