@@ -1,4 +1,4 @@
-[DEMO LINK](https://github.com/ErnestoFernandezUA/react-basic-01)
+[DEMO LINK](https://ernestofernandezua.github.io/react-basic-01/)
 
 # React TypeScript Starter Pack
 
