@@ -1,5 +1,6 @@
 import React from 'react';
-// import classNames from 'classnames';
+import './ProductItem.scss';
+import classNames from 'classnames';
 
 type Props = {
   productsKey: number;
@@ -13,19 +14,7 @@ type Props = {
   clickTakeHandler: (event: any, id: number) => void;
 };
 
-export class ProductItem extends React.Component<Props> {
-  buttonColorStyle = (
-    productsKey: number,
-    activeId: number,
-    isTakenPosition: boolean,
-  ) => {
-    if (productsKey === activeId) {
-      return isTakenPosition ? 'yellow' : 'grey';
-    }
-
-    return 'white';
-  };
-
+export class ProductItem extends React.PureComponent<Props> {
   render() {
     const {
       productsKey,
@@ -40,7 +29,11 @@ export class ProductItem extends React.Component<Props> {
     } = this.props;
 
     // eslint-disable-next-line no-console
-    // console.log('ProductItem', name);
+    console.log('ProductItem', name, color);
+
+    const buttonStyle = {
+      border: `2px solid ${color}`,
+    };
 
     return (
       <div>
@@ -49,15 +42,12 @@ export class ProductItem extends React.Component<Props> {
           onKeyPress={keyPressHandler}
           onClick={event => clickActiveHandler(event, productsKey)}
           onContextMenu={event => clickTakeHandler(event, productsKey)}
-          style={
-            {
-              border: `2px solid ${color}`,
-              borderRadius: '10px',
-              backgroundColor: this.buttonColorStyle(productsKey, activeId, isTakenPosition),
-              width: '200px',
-              margin: '2px',
-            }
-          }
+          className={classNames(
+            'ProductItem',
+            { 'ProductItem--active': productsKey === activeId && !isTakenPosition },
+            { 'ProductItem--taken': productsKey === activeId && isTakenPosition },
+          )}
+          style={buttonStyle}
         >
           {productsKey}
           &nbsp;

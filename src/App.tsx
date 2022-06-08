@@ -35,14 +35,7 @@ class App extends React.Component<{}, State> {
         <button
           type="button"
           onClick={this.addYear}
-          style={
-            {
-              border: '2px solid black',
-              borderRadius: '10px',
-              width: '200px',
-              margin: '2px',
-            }
-          }
+          className="App__button"
         >
           Age ++
         </button>
