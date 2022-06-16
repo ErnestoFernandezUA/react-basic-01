@@ -243,6 +243,10 @@ export class ProductList extends React.Component<Props, State> {
 
     return (
       <>
+        <div className="ProductList__keys">
+          <p>W, S to move</p>
+          <p>T to take</p>
+        </div>
         <p>
           name: &nbsp;
           {products[activeId].name}
@@ -299,6 +303,19 @@ export class ProductList extends React.Component<Props, State> {
           }
         >
           sort by name
+        </button>
+        <br></br>
+
+        <button
+          type="button"
+          className="button"
+          onClick={() => {
+            // eslint-disable-next-line no-console
+            console.log('up');
+
+            return (event: any) => this.clickTakeHandler(event, this.state.activeId);
+          }}
+        >
         </button>
 
         <div className="productFlexBox">

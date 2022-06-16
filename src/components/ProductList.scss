@@ -8,6 +8,19 @@
       background-color: yellow;
     }
   }
+
+  &__keys {
+    border-radius: 10px;
+    border: 2px solid black;
+
+    height: fit-content;
+    width: 160px;
+    margin: 5px auto;
+    padding: 0 20px;
+    background-color: aqua;
+    font-size: 15px;
+    line-height: 10px;
+  }
 }
 
 .productFlexBox {
@@ -28,4 +41,20 @@
     display: inline-block;
   }
 
+}
+
+.button {
+  height: 100px;
+  width: 100px;
+  // border: 1px solid grey;
+  border: none;
+  background-color: white;
+  display: inline-block;
+  background-image: url(../pictures/up-arrow-svgrepo-com.svg);
+  background-position: center;
+  object-fit: contain;
+ 
+  & :focus{
+    cursor: pointer;
+ }
 }
