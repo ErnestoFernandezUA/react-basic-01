@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "./static/css/main.b6ed170c.chunk.css",
-    "main.js": "./static/js/main.44fc3f12.chunk.js",
-    "main.js.map": "./static/js/main.44fc3f12.chunk.js.map",
+    "main.css": "./static/css/main.592eece2.chunk.css",
+    "main.js": "./static/js/main.d6e4c18c.chunk.js",
+    "main.js.map": "./static/js/main.d6e4c18c.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.8c9895b1.js",
     "runtime-main.js.map": "./static/js/runtime-main.8c9895b1.js.map",
-    "static/js/2.4b1d5bf6.chunk.js": "./static/js/2.4b1d5bf6.chunk.js",
-    "static/js/2.4b1d5bf6.chunk.js.map": "./static/js/2.4b1d5bf6.chunk.js.map",
+    "static/js/2.41daa838.chunk.js": "./static/js/2.41daa838.chunk.js",
+    "static/js/2.41daa838.chunk.js.map": "./static/js/2.41daa838.chunk.js.map",
     "index.html": "./index.html",
-    "static/css/main.b6ed170c.chunk.css.map": "./static/css/main.b6ed170c.chunk.css.map",
-    "static/js/2.4b1d5bf6.chunk.js.LICENSE.txt": "./static/js/2.4b1d5bf6.chunk.js.LICENSE.txt",
+    "static/css/main.592eece2.chunk.css.map": "./static/css/main.592eece2.chunk.css.map",
+    "static/js/2.41daa838.chunk.js.LICENSE.txt": "./static/js/2.41daa838.chunk.js.LICENSE.txt",
     "static/media/ProductList.scss": "./static/media/up-arrow-svgrepo-com.3af5d0b5.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.8c9895b1.js",
-    "static/js/2.4b1d5bf6.chunk.js",
-    "static/css/main.b6ed170c.chunk.css",
-    "static/js/main.44fc3f12.chunk.js"
+    "static/js/2.41daa838.chunk.js",
+    "static/css/main.592eece2.chunk.css",
+    "static/js/main.d6e4c18c.chunk.js"
   ]
 }
