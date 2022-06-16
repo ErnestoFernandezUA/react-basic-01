@@ -1,0 +1,13 @@
+.ProductItem {
+  border-radius: 10px;
+  width: 200px;
+  margin: 2px;
+
+  &--taken {
+    background-color: yellow;
+  }
+
+  &--active {
+    background-color: lightslategrey;
+  }
+}
