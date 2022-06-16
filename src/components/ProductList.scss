@@ -1,4 +1,6 @@
 .ProductList {
+  // display: flex;
+  // flex-direction: column;
   list-style-type: none;
   padding: 0;
 
@@ -10,6 +12,9 @@
   }
 
   &__keys {
+    position: fixed;
+    bottom: 0;
+    left: calc(50vw - 80px);
     border-radius: 10px;
     border: 2px solid black;
 
@@ -17,8 +22,8 @@
     width: 160px;
     margin: 5px auto;
     padding: 0 20px;
-    background-color: aqua;
-    font-size: 15px;
+    background-color: yellow;
+    font-size: 20px;
     line-height: 10px;
   }
 }

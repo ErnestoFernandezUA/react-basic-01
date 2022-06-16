@@ -242,7 +242,7 @@ export class ProductList extends React.Component<Props, State> {
     console.log('render ProductList');
 
     return (
-      <>
+      <div className="ProductList">
         <div className="ProductList__keys">
           <p>W, S to move</p>
           <p>T to take</p>
@@ -274,7 +274,6 @@ export class ProductList extends React.Component<Props, State> {
         >
           sort by id
         </button>
-        <br></br>
         <button
           type="button"
           onClick={this.sortByColorHandler}
@@ -289,7 +288,6 @@ export class ProductList extends React.Component<Props, State> {
         >
           sort by color
         </button>
-        <br></br>
         <button
           type="button"
           onClick={this.sortByNameHandler}
@@ -304,9 +302,8 @@ export class ProductList extends React.Component<Props, State> {
         >
           sort by name
         </button>
-        <br></br>
 
-        <button
+        {/* <button
           type="button"
           className="button"
           onClick={() => {
@@ -316,7 +313,7 @@ export class ProductList extends React.Component<Props, State> {
             return (event: any) => this.clickTakeHandler(event, this.state.activeId);
           }}
         >
-        </button>
+        </button> */}
 
         <div className="productFlexBox">
           <ul className="productFlexBox__ProductList ProductList">
@@ -346,7 +343,7 @@ export class ProductList extends React.Component<Props, State> {
             />
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }
