@@ -274,6 +274,7 @@ export class ProductList extends React.Component<Props, State> {
         >
           sort by id
         </button>
+        <br />
         <button
           type="button"
           onClick={this.sortByColorHandler}
@@ -288,6 +289,7 @@ export class ProductList extends React.Component<Props, State> {
         >
           sort by color
         </button>
+        <br />
         <button
           type="button"
           onClick={this.sortByNameHandler}
