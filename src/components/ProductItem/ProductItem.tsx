@@ -9,9 +9,9 @@ type Props = {
   color: string;
   activeId: number;
   isTakenPosition: boolean;
-  keyPressHandler: (event: any) => void;
-  clickActiveHandler: (event: any, id: number) => void;
-  clickTakeHandler: (event: any, id: number) => void;
+  handlerKeyPress: (event: unknown) => void;
+  handlerClickActive: (event: unknown, id: number) => void;
+  handlerClickTake: (event: unknown, id: number) => void;
 };
 
 export class ProductItem extends React.PureComponent<Props> {
@@ -23,9 +23,8 @@ export class ProductItem extends React.PureComponent<Props> {
       name,
       activeId,
       isTakenPosition,
-      keyPressHandler,
-      clickActiveHandler,
-      clickTakeHandler,
+      handlerKeyPress,
+      handlerClickActive,
     } = this.props;
 
     // eslint-disable-next-line no-console
@@ -39,9 +38,9 @@ export class ProductItem extends React.PureComponent<Props> {
       <div>
         <button
           type="button"
-          onKeyPress={keyPressHandler}
-          onClick={event => clickActiveHandler(event, productsKey)}
-          onContextMenu={event => clickTakeHandler(event, productsKey)}
+          onKeyPress={handlerKeyPress}
+          onClick={event => handlerClickActive(event, productsKey)}
+          onContextMenu={event => handlerClickActive(event, productsKey)}
           className={classNames(
             'ProductItem',
             { 'ProductItem--active': productsKey === activeId && !isTakenPosition },

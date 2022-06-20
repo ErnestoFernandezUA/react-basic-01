@@ -1,9 +1,9 @@
 import React from 'react';
 import './ProductList.scss';
 
-import { ProductItem } from './ProductItem';
-import { Product } from '../types/Product';
-import { Memocomponent } from './Memocomponent';
+import { ProductItem } from '../ProductItem';
+import { Product } from '../../types/Product';
+import { Memocomponent } from '../Memocomponent';
 
 type Props = {
   products: Product[];
@@ -38,7 +38,7 @@ export class ProductList extends React.Component<Props, State> {
       || nextState.products !== this.state.products;
   }
 
-  keyPressHandler = (event: any) => {
+  handlerKeyPress = (event: any) => {
     const {
       activeId,
       isTakenPosition,
@@ -143,7 +143,7 @@ export class ProductList extends React.Component<Props, State> {
     }
   };
 
-  sortByIdHandler = () => {
+  handlerSortById = () => {
     // eslint-disable-next-line no-console
     console.log('sort by Id');
 
@@ -164,7 +164,7 @@ export class ProductList extends React.Component<Props, State> {
     }));
   };
 
-  sortByColorHandler = () => {
+  handlerSortByColor = () => {
     // eslint-disable-next-line no-console
     console.log('sort by color');
 
@@ -186,7 +186,7 @@ export class ProductList extends React.Component<Props, State> {
     }));
   };
 
-  sortByNameHandler = () => {
+  handlerSortByName = () => {
     // eslint-disable-next-line no-console
     console.log('sort by name');
 
@@ -208,14 +208,14 @@ export class ProductList extends React.Component<Props, State> {
     }));
   };
 
-  clickActiveHandler = (event: any, productsKey: number) => {
+  handlerClickActive = (event: any, productsKey: number) => {
     this.setState(() => ({
       activeId: productsKey,
       isTakenPosition: false,
     }));
   };
 
-  clickTakeHandler = (event: any, productsKey: number) => {
+  handlerClickTake = (event: any, productsKey: number) => {
     event.preventDefault();
 
     if (this.state.activeId === productsKey) {
@@ -248,21 +248,16 @@ export class ProductList extends React.Component<Props, State> {
           <p>T to take</p>
         </div>
         <p>
-          name: &nbsp;
-          {products[activeId].name}
-        </p>
-        <p>
-          activeId:&nbsp;
-          {activeId}
-        </p>
-        <p>
-          isTakenPosition &nbsp;
-          {isTakenPosition ? 'true' : 'false'}
+          {`name: ${products[activeId].name}`}
+          <br />
+          {`activeId: ${activeId}`}
+          <br />
+          {`isTakenPosition: ${isTakenPosition ? 'true' : 'false'}`}
         </p>
 
         <button
           type="button"
-          onClick={this.sortByIdHandler}
+          onClick={this.handlerSortById}
           style={
             {
               border: '2px solid black',
@@ -277,7 +272,7 @@ export class ProductList extends React.Component<Props, State> {
         <br />
         <button
           type="button"
-          onClick={this.sortByColorHandler}
+          onClick={this.handlerSortByColor}
           style={
             {
               border: '2px solid black',
@@ -292,7 +287,7 @@ export class ProductList extends React.Component<Props, State> {
         <br />
         <button
           type="button"
-          onClick={this.sortByNameHandler}
+          onClick={this.handlerSortByName}
           style={
             {
               border: '2px solid black',
@@ -331,9 +326,9 @@ export class ProductList extends React.Component<Props, State> {
                     color={product.color}
                     activeId={activeId}
                     isTakenPosition={isTakenPosition}
-                    keyPressHandler={this.keyPressHandler}
-                    clickActiveHandler={this.clickActiveHandler}
-                    clickTakeHandler={this.clickTakeHandler}
+                    handlerKeyPress={this.handlerKeyPress}
+                    handlerClickActive={this.handlerClickActive}
+                    handlerClickTake={this.handlerClickTake}
                   />
                 </li>
               );
